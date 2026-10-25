@@ -10,4 +10,7 @@ class ApplicationRecord < ActiveRecord::Base
     end
   end
 
+     def self.findbyid(i)
+    where(id: i)
+  end
 end

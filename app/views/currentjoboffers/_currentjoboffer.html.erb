@@ -1,67 +1,65 @@
-<div id="<%= dom_id currentjoboffer %>">
-  <div>
-    <strong>Largepic:</strong>
-    <%= currentjoboffer.largepic %>
-  </div>
-
-  <div>
-    <strong>Smallpic:</strong>
-    <%= currentjoboffer.smallpic %>
-  </div>
-
-  <div>
+<div class="card" style="width: 18rem;">
+<img class="card-img-top" src="/assets/<%= currentjoboffer.largepic %>" alt="Card image">
+<div class="card-body">
+<h5 class="card-title">
+  <img style="height:100px:width:100px;" src="/assets/<%= currentjoboffer.smallpic %>" />
+  <%=currentjoboffer.job.name%>
+</h5>
+  <p class="card-text">
     <strong>Place:</strong>
-    <%= currentjoboffer.place_id %>
-  </div>
+    <%= currentjoboffer.place.name %>
+  </p>
+  <p class="card-text">
+    <strong>Person:</strong>
+    <%= currentjoboffer.person.name %>
+  </p>
 
-  <div>
+  <p class="card-text">
     <strong>Field:</strong>
-    <%= currentjoboffer.field_id %>
-  </div>
+    <%= currentjoboffer.field.name %>
+  </p>
 
-  <div>
+  <p class="card-text">
     <strong>Type de contrat:</strong>
     <%= currentjoboffer.type_de_contrat %>
-  </div>
+  </p>
 
-  <div>
+  <p class="card-text">
     <strong>Statut:</strong>
     <%= currentjoboffer.statut %>
-  </div>
+  </p>
 
-  <div>
+  <p class="card-text">
     <strong>Salaire:</strong>
-    <%= currentjoboffer.salaire %>
-  </div>
+    <%= currentjoboffer.salaire_annuel %>
+  </p>
 
-  <div>
-    <strong>Annuel:</strong>
-    <%= currentjoboffer.annuel %>
-  </div>
 
-  <div>
+  <p class="card-text">
     <strong>Temps de travail:</strong>
     <%= currentjoboffer.temps_de_travail %>
-  </div>
+  </p>
 
-  <div>
+  <p class="card-text">
     <strong>Duree du contrat:</strong>
     <%= currentjoboffer.duree_du_contrat %>
-  </div>
+  </p>
 
   <div>
-    <strong>Job:</strong>
-    <%= currentjoboffer.job_id %>
-  </div>
 
-  <div>
-    <strong>Post:</strong>
-    <%= currentjoboffer.post_id %>
-  </div>
 
-  <div>
+  <p class="card-text">
     <strong>Description:</strong>
     <%= currentjoboffer.description %>
-  </div>
+  </p>
+  <a href="/posts/new?jobposition=<%=currentjoboffer.id%>" class="btn btn-primary">utiliser cette job position dans un post</a>
+</div>
+</div>
+
+
+<div id="<%= dom_id currentjoboffer %>">
+
+
+
 
 </div>

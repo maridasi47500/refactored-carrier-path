@@ -1,4 +1,4 @@
-<%=fields_for :place do |form|%>
+<%=fields_for :currentjoboffer do |form|%>
 <%=form.collection_radio_buttons(:place_id, @k, :id, :name) do |b| %>
        <%=b.radio_button%>
 <%=b.label%>

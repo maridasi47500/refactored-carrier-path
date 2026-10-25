@@ -1,4 +1,3 @@
-require 'assets/photos'
 
 class WelomeController < ApplicationController
     protect_from_forgery except: [:index]

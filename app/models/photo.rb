@@ -3,7 +3,6 @@ require "open-uri"
 require 'openssl'
 require 'nokogiri'
 
-require 'assets/photos'
 #require "./file"
 class Photo < ApplicationRecord
 

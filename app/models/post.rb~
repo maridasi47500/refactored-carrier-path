@@ -3,11 +3,15 @@
 require 'assets/hacking_type'
 
 class Post < ActiveRecord::Base
-  attr_accessor :wid, :hei, :addamap
+  attr_accessor :wid, :hei, :addamap, :jobposition
 
   before_validation :mymapsvalid
+  has_many :currentjoboffers
 
   def mymapsvalid
+    if self.jobposition.to_i > 0
+      self.currentjoboffers << Currentjoboffer.where(id: self.jobposition)
+    end
     file = self.addamap
     if file && !file.is_a?(String)
       pathfile = file.tempfile.path
@@ -164,8 +168,8 @@ class Post < ActiveRecord::Base
   has_many :contents
   accepts_nested_attributes_for :contents, allow_destroy: true
 
-  #has_many :people_hacked, through: :posts_surnames, source: :person
-  has_many :hacked_people, through: :posts_surnames
+  has_many :people_hacked, through: :posts_surnames, source: :person
+  #has_many :hacked_people, through: :posts_surnames
   has_many :peopletalkedabout, through: :posts_surnames, source: :sailor
   has_many :surnames, through: :posts_surnames
 

@@ -1,8 +1,11 @@
 class CurrentjoboffersController < ApplicationController
   before_action :set_currentjoboffer, only: %i[ show edit update destroy ]
 
-  layout false, only: [:field, :job, :place]
+  layout false, only: [:person, :field, :job, :place]
   # GET /sectors or /sectors.json
+  def person
+    @k=Person.findbyid(params[:id])
+  end
   def field
     @k=Field.findbyid(params[:id])
   end
@@ -24,7 +27,7 @@ class CurrentjoboffersController < ApplicationController
 
   # GET /currentjoboffers/new
   def new
-    @currentjoboffer = Currentjoboffer.new
+    @currentjoboffer = Currentjoboffer.new(post_id: params[:postid])
   end
 
   # GET /currentjoboffers/1/edit

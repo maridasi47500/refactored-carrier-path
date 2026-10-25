@@ -8,6 +8,7 @@
   <%=render partial:"formulairenewpost",locals:{edit:true, url:"/posts/#{@post.id}/edit"}%> |
 
     <%if @post.id%>
+    | <%= link_to "Add current job offer or job position", new_currentjoboffer_path(postid: @post.id)%>
     | <%= link_to "Add new avatars", addnewavatars_post_path(@post.id)%>
     | <%= link_to "Edit avatars", editavatars_post_path(@post.id)%>
     | <%= link_to "Ajouter une tâche à ce poste", tasks_post_path(@post.id)%>
@@ -169,12 +170,12 @@ var dropdownList = dropdownElementList.map(function (dropdownToggleEl) {
             <%= render partial: "comment", collection: @post.comments, as: :comment, locals: {post: @post} %>
 
   </div>
-
+<!--
 <h1>Laisser un commentaire</h1>
 <form action="/posts/new" method="post">
 <%= hidden_field_tag 'postidanswer', @post.id.to_s %>
 <%= submit_tag "leave a comment" %>
-</form>
+</form>-->
 <%# render 'jsforreadautomatic' %>
             <%if @post.id%><%= button_to "Delete This Post", { action: "destroy", id: @post.id },
       method: :delete, data: { confirm: "Are you sure?" } %><%end%>

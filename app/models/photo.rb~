@@ -4,7 +4,7 @@ require 'openssl'
 require 'nokogiri'
 
 require 'assets/photos'
-require "./file"
+#require "./file"
 class Photo < ApplicationRecord
 
  has_many :photohavesailors

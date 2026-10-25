@@ -1,0 +1,65 @@
+<div class="card" style="width: 18rem;">
+<img class="card-img-top" src="/assets/<%= currentjoboffer.largepic %>" alt="Card image">
+<div class="card-body">
+<h5 class="card-title">
+  <img style="height:100px:width:100px;" src="/assets/<%= currentjoboffer.smallpic %>" />
+  <%=currentjoboffer.job.name%>
+</h5>
+  <p class="card-text">
+    <strong>Place:</strong>
+    <%= currentjoboffer.place.name %>
+  </p>
+  <p class="card-text">
+    <strong>Person:</strong>
+    <%= currentjoboffer.person.name %>
+  </p>
+
+  <p class="card-text">
+    <strong>Field:</strong>
+    <%= currentjoboffer.field.name %>
+  </p>
+
+  <p class="card-text">
+    <strong>Type de contrat:</strong>
+    <%= currentjoboffer.type_de_contrat %>
+  </p>
+
+  <p class="card-text">
+    <strong>Statut:</strong>
+    <%= currentjoboffer.statut %>
+  </p>
+
+  <p class="card-text">
+    <strong>Salaire:</strong>
+    <%= currentjoboffer.salaire_annuel %>
+  </p>
+
+
+  <p class="card-text">
+    <strong>Temps de travail:</strong>
+    <%= currentjoboffer.temps_de_travail %>
+  </p>
+
+  <p class="card-text">
+    <strong>Duree du contrat:</strong>
+    <%= currentjoboffer.duree_du_contrat %>
+  </p>
+
+  <div>
+
+
+  <p class="card-text">
+    <strong>Description:</strong>
+    <%= currentjoboffer.description %>
+  </p>
+  <a href="/posts/new?jobposition=<%=currentjoboffer.id%>" class="btn btn-primary">utiliser cette job position dans un post</a>
+</div>
+</div>
+
+
+<div id="<%= dom_id currentjoboffer %>">
+
+
+
+
+</div>

@@ -151,6 +151,7 @@ var dropdownList = dropdownElementList.map(function (dropdownToggleEl) {
 <%end%>
 
 <%=render @post.anaphors%>
+<%=render @post.currentjoboffers%>
 
 
 <%if @post.actions.count > 0%>
@@ -170,12 +171,12 @@ var dropdownList = dropdownElementList.map(function (dropdownToggleEl) {
             <%= render partial: "comment", collection: @post.comments, as: :comment, locals: {post: @post} %>
 
   </div>
-
+<!--
 <h1>Laisser un commentaire</h1>
 <form action="/posts/new" method="post">
 <%= hidden_field_tag 'postidanswer', @post.id.to_s %>
 <%= submit_tag "leave a comment" %>
-</form>
+</form>-->
 <%# render 'jsforreadautomatic' %>
             <%if @post.id%><%= button_to "Delete This Post", { action: "destroy", id: @post.id },
       method: :delete, data: { confirm: "Are you sure?" } %><%end%>

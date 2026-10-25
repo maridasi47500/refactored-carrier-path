@@ -3,7 +3,7 @@ class PeopleController < ApplicationController
 
 
     before_action :pagination, only: [:index]
-layout false, only: [:dreamjobs,:compar1,:sosies,:villedeqn]
+layout false, only: [:json,:dreamjobs,:compar1,:sosies,:villedeqn]
 def coloc1
 end
 def coloc2
@@ -208,7 +208,7 @@ end
     def index
 @g=params[:page].to_i
       #@people=Person.all.joins(:collections).group_by {|x| x['collections.name']}
-@people=Person.all.order(:id)#.page(params[:page].to_i)
+@people=Person.all.bypage(params[:page].to_i)
     end
 
     def addprofilepic

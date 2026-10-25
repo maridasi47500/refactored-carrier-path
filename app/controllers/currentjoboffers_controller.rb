@@ -27,7 +27,7 @@ class CurrentjoboffersController < ApplicationController
 
   # GET /currentjoboffers/new
   def new
-    @currentjoboffer = Currentjoboffer.new
+    @currentjoboffer = Currentjoboffer.new(post_id: params[:postid])
   end
 
   # GET /currentjoboffers/1/edit
@@ -80,6 +80,7 @@ class CurrentjoboffersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def currentjoboffer_params
-      params.expect(currentjoboffer: [ :largepic, :smallpic, :place_id, :field_id, :type_de_contrat, :statut, :salaire, :annuel, :person_id, :temps_de_travail, :duree_du_contrat, :job_id, :post_id, :description ])
+      params.expect(currentjoboffer: [ :largepic, :smallpic, :place_id, :field_id, :type_de_contrat, :statut, :salaire_annuel, :annuel, :person_id, :temps_de_travail, :duree_du_contrat, :job_id, :post_id, :description ])
+      
     end
 end

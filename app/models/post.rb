@@ -3,11 +3,16 @@
 require 'assets/hacking_type'
 
 class Post < ActiveRecord::Base
-  attr_accessor :wid, :hei, :addamap
+  attr_accessor :wid, :hei, :addamap, :jobposition
 
   before_validation :mymapsvalid
+  has_and_belongs_to_many :currentjoboffers, :join_table => :posthasjobpositions
+  
 
   def mymapsvalid
+    if self.jobposition.to_i > 0
+      self.currentjoboffers << Currentjoboffer.where(id: self.jobposition)
+    end
     file = self.addamap
     if file && !file.is_a?(String)
       pathfile = file.tempfile.path

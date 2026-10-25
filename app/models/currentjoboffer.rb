@@ -1,10 +1,9 @@
 class Currentjoboffer < ApplicationRecord
   belongs_to :place
   belongs_to :field
+  has_and_belongs_to_many :posts, :join_table => :posthasjobpositions
+
   belongs_to :job
-  accepts_nested_attributes_for :place
-  accepts_nested_attributes_for :field
-  accepts_nested_attributes_for :job
   belongs_to :post
   belongs_to :person, optional: true
   def smallpic
@@ -52,16 +51,20 @@ end
   end
   end
 def myplace
-#Place.where(id: self.place_id)
-Currentjoboffer.where(place_id: self.place_id)
+Place.where(id: self.place_id)
+#Currentjoboffer.where(place_id: self.place_id)
 end
 def myjob
-#Job.where(id: self.job_id)
-Currentjoboffer.where(job_id: self.job_id)
+Job.where(id: self.job_id)
+#Currentjoboffer.where(job_id: self.job_id)
+end
+def myperson
+Person.where(id: self.person_id)
+#Currentjoboffer.where(field_id: self.field_id)
 end
 def myfield
-#Field.where(id: self.field_id)
-Currentjoboffer.where(field_id: self.field_id)
+Field.where(id: self.field_id)
+#Currentjoboffer.where(field_id: self.field_id)
 end
   
 end

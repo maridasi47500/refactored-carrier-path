@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_10_25_012823) do
+ActiveRecord::Schema[8.1].define(version: 2026_10_25_164511) do
   create_table "Argent", force: :cascade do |t|
     t.integer "user_id"
     t.string "mois", limit: 15, null: false
@@ -656,12 +656,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_25_012823) do
     t.integer "field_id", null: false
     t.string "type_de_contrat"
     t.string "statut"
-    t.string "salaire"
-    t.string "annuel"
+    t.string "salaire_annuel"
     t.string "temps_de_travail"
     t.string "duree_du_contrat"
     t.integer "job_id", null: false
-    t.integer "post_id", null: false
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -670,7 +668,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_25_012823) do
     t.index ["job_id"], name: "index_currentjoboffers_on_job_id"
     t.index ["person_id"], name: "index_currentjoboffers_on_person_id"
     t.index ["place_id"], name: "index_currentjoboffers_on_place_id"
-    t.index ["post_id"], name: "index_currentjoboffers_on_post_id"
   end
 
   create_table "currentprofilephotos", force: :cascade do |t|
@@ -1860,6 +1857,15 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_25_012823) do
   create_table "post_types_posts", force: :cascade do |t|
     t.integer "post_id"
     t.integer "post_type_id"
+  end
+
+  create_table "posthasjobpositions", force: :cascade do |t|
+    t.integer "post_id", null: false
+    t.integer "currentjoboffer_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["currentjoboffer_id"], name: "index_posthasjobpositions_on_currentjoboffer_id"
+    t.index ["post_id"], name: "index_posthasjobpositions_on_post_id"
   end
 
   create_table "posthavehiddenmessages", force: :cascade do |t|
@@ -3056,5 +3062,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_25_012823) do
   add_foreign_key "currentjoboffers", "jobs"
   add_foreign_key "currentjoboffers", "people"
   add_foreign_key "currentjoboffers", "places"
-  add_foreign_key "currentjoboffers", "posts"
+  add_foreign_key "posthasjobpositions", "currentjoboffers"
+  add_foreign_key "posthasjobpositions", "posts"
 end

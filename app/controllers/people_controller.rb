@@ -4,6 +4,11 @@ class PeopleController < ApplicationController
 
     before_action :pagination, only: [:index]
 layout false, only: [:dreamjobs,:compar1,:sosies,:villedeqn]
+def json
+@a=Person.findbyname(params[:name])
+render json: @a
+end
+
 def coloc1
 end
 def coloc2

@@ -13,12 +13,12 @@
 
   <div>
     <%= form.label :largepic, style: "display: block" %>
-    <%= form.text_field :largepic %>
+    <%= form.file_field :largepic %>
   </div>
 
   <div>
     <%= form.label :smallpic, style: "display: block" %>
-    <%= form.text_field :smallpic %>
+    <%= form.file_field :smallpic %>
   </div>
 
   <div>
@@ -32,31 +32,32 @@
 
   <div>
     <%= form.label :type_de_contrat, style: "display: block" %>
+    (cdi, cdd)
     <%= form.text_field :type_de_contrat %>
   </div>
 
   <div>
     <%= form.label :statut, style: "display: block" %>
+    (cadre, non cadre)
     <%= form.text_field :statut %>
   </div>
 
   <div>
-    <%= form.label :salaire, style: "display: block" %>
-    <%= form.text_field :salaire %>
+    <%= form.label :salaire_annuel, style: "display: block" %>
+    (salaire annuel)
+    <%= form.text_field :salaire_annuel %>
   </div>
 
-  <div>
-    <%= form.label :annuel, style: "display: block" %>
-    <%= form.text_field :annuel %>
-  </div>
 
   <div>
     <%= form.label :temps_de_travail, style: "display: block" %>
+    (nombre heures)
     <%= form.text_field :temps_de_travail %>
   </div>
 
   <div>
     <%= form.label :duree_du_contrat, style: "display: block" %>
+    (nombre jour, semaines, mois , années)
     <%= form.text_field :duree_du_contrat %>
   </div>
 
@@ -64,11 +65,11 @@
 <%=render "form/radiobutton", form: form, fieldname: 'job_id', collec: currentjoboffer.myjob, mesmodele:"jobs"%>
   </div>
   <div>
-<%=render "form/radiobutton", form: form, fieldname: 'person_id', collec: Person.where(person_id: currentjoboffer.person_id), mesmodele:"people"%>
+<%=render "form/radiobutton", form: form, fieldname: 'person_id', collec: Person.where(id: currentjoboffer.person_id), mesmodele:"people"%>
   </div>
 
   <div>
-    <%= form.hidden_field :post_id, value: params[:postid] %>
+    <%= form.hidden_field :post_id %>
   </div>
 
   <div>

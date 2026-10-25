@@ -54,6 +54,7 @@ color:#fcec03;
       </ul>
     </div>
   <% end %>
+
   <% if params[:robotid] %>
                 <%=form.collection_check_boxes(:robot_ids, Robot.where(id: params[:robotid]), :id, :name) do |b|%>
                   <h3> Do <i>you</i> find <%=render Robot.find(b.value)%> awesome?</h3>
@@ -119,6 +120,10 @@ color:#fcec03;
               <%=b.check_box %><%=b.label%>
             <%end%>
   </div>
+  <% if params[:jobposition] %>
+    <%=form.hidden_field :jobposition, value: params[:jobposition]%>
+    <%=render Currentjoboffer.find(params[:jobposition])%>
+  <% end %>
 <%if params[:monpostsurnameid]%>
 
 <div class="field">
@@ -159,7 +164,7 @@ color:#fcec03;
 
 
   <% end %>
-  <%=text_field_tag :search, "", id: "searchA"%>
+  <%=text_field_tag :search, "", id: "searchA", placeholder: "look for posts surnames or avatar"%>
   <select id="search1"></select>
   <div id="ps"></div>
 

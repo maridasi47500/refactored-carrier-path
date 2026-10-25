@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
     collection do
             get 'sailorclothing1'
+            get 'json'
             post 'sailorclothing2'
             post 'sailorwhatclothing'
             get 'coloc1'
