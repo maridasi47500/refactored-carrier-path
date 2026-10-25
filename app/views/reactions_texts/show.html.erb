@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @reactions_text.name %>
+</p>
+<p>
+<button type="button" onclick="window.location='<%=new_reaction_path(number: @reactions_text.mynbpeople, reactionid: @reactions_text.id)%>';">Use this reaction</button>
+
+</p>
+
+<%= link_to 'Edit', edit_reactions_text_path(@reactions_text) %> |
+<%= link_to 'Back', reactions_texts_path %>

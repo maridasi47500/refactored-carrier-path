@@ -1,0 +1,9 @@
+<div class="card">
+<h5><%=task.name%></h5>
+<h4>
+<%=t('sailors',count: task.sailors.length)%>  
+</h4>
+<p>Durée : <%=distance_of_time_in_words(task.start_at, task.end_at)%></p>
+
+
+</div>

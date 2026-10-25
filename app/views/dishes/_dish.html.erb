@@ -1,0 +1,5 @@
+<div class="dishno<%=dish.id%>"><%= dish.name%> <%= dish.image ? (image_tag(dish.image, class: "imageprofilethread", alt:" pic")) : nil%>
+<p class=""><%=link_to "edit dish","",onclick: "$.ajax({url:'#{edit_dish_path(dish.id)}?ajax=true',success:function(data){onfa();facontent.innerHTML=data;}});return false;"%></p>
+</div>
+
+

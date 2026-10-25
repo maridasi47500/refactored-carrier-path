@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+<%=link_to "Jouer", jeu_armygrades_path %>
+
+<h1>Armygrades</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Grade</th>
+      <th>Appellation</th>
+      <th>Image</th>
+      <th>Pour une femme</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @armygrades.each do |armygrade| %>
+      <tr>
+        <td><%= armygrade.nom %></td>
+        <td><%= armygrade.appellation %></td>
+
+        <td>  <%= image_tag '/assets/'+armygrade.image, width: 200, height: 200 %></td>
+        <td><%= armygrade.femme %></td>
+        <td><%= link_to 'Show', armygrade %></td>
+        <td><%= link_to 'Edit', edit_armygrade_path(armygrade) %></td>
+        <td><%= link_to 'Destroy', armygrade, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Armygrade', new_armygrade_path %>

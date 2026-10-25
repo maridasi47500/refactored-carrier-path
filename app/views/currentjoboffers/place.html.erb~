@@ -1,0 +1,8 @@
+<%=fields_for :place do |form|%>
+<%=form.collection_radio_buttons(:place_id, @k, :id, :name) do |b| %>
+       <%=b.radio_button%>
+<%=b.label%>
+
+<% end %>
+<% end %>
+

@@ -1,0 +1,6 @@
+<%if @attitudes.length > 0%>
+
+<%=render @attitudes %>
+<%else%>
+<%=render 'attitudes/resultattitude', attitude: @attitude%>
+<%end%>

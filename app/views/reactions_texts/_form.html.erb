@@ -1,0 +1,23 @@
+<%= form_with(model: reactions_text,  local: true, html: {id: "formreacttext"}) do |form| %>
+  <% if reactions_text.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(reactions_text.errors.count, "error") %> prohibited this reactions_text from being saved:</h2>
+
+      <ul>
+        <% reactions_text.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<p>tu peux écrire les prénoms disponibles dans la liste tout en majuscules : <%=Reaction.mykeywords.map(&:titleize).join(', ')%>.</p>
+  <div class="field">
+    <%= form.label :name, "How did you react to this?" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

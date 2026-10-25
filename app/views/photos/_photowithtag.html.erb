@@ -1,0 +1,13 @@
+<div>
+<%=image_tag '/assets/'+photo.name, width: 500, height: 300,alt:photo.title, usemap: "#workmap#{photo.id}"%>
+</div>
+<%if photo.photohavesailors.withcoord.length > 0%>
+<map name="workmap<%=photo.id%>">
+<%photo.photohavesailors.withcoord.each do |sailor|%>
+  <area shape="rect" class="myclass" coords="<%=sailor.rectanglecoord%>" title="<%=sailor.person.name%>" alt="<%=sailor.person.name%>" href="<%=person_path(sailor.person.id)%>">
+        <div><%= button_to sailor.person.name+' [X] ', sailor, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+
+<%end%>
+</map>
+<%end%>
+

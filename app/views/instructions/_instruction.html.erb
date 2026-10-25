@@ -1,0 +1,16 @@
+<ul>
+<li class="<%= instruction.otherinstruction ? "" : "redborder"%>">
+<%if false#!instruction.myinstruction%>
+<%=t('showpages.instruction.dabord')%>
+<%elsif false#!instruction.otherinstruction%>
+<%=t('showpages.instruction.enfin')%>
+<%elsif instruction.myinstruction%>
+<%=t('showpages.instruction.then')%>
+<%end%>
+<%=instruction.content%>
+<%if instruction.otherinstruction%>
+<%=render instruction.otherinstruction%>
+<%end%>
+
+</li>
+</ul>

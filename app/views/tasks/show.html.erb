@@ -1,0 +1,82 @@
+<p id="notice"><%= notice %></p>
+
+<h4>
+  <%= @task.name %>
+<%if @task.epochs.length > 0%>
+(<%=@task.epochs.map{|x|(link_to(x.nomdecetteepoque,x))}.to_sentence.html_safe%>)
+<%end%>
+</h4>
+<p>Durée : <%=distance_of_time_in_words(@task.start_at, @task.end_at)%></p>
+<%if @task.city%>
+<p><%=@task.city.name%></p>
+<%end%>
+<h4>
+<%=t('sailors',count: @task.sailors.length)%>  
+</h4>
+<%if @task.thingsisaid(current_user.id).length > 0%>
+<p><b><u><%=t('expressions.selonvous',user:current_user.name)%></u></b><p>
+<%@task.thingsisaid(current_user.id).each do |t|%>
+<p><%=t('pagesshow.task.usefortaskwithoutsailor',task:@task.name,count: t.use, thing:t.thing.name)%></p>
+<p><%=t('pagesshow.task.qtymoy',task:@task.name,count: t.nb, thing:t.thing.name.pluralize(t.nb))%></p>
+<%end%>
+<%end%>
+<%if @task.drinksisaid(current_user.id).length > 0%>
+<p><b><u><%=t('expressions.selonvous',user:current_user.name)%></u></b><p>
+<%@task.drinksisaid(current_user.id).each do |t|%>
+<%if t.qty.to_i > 0%>
+<p><%=t('pagesshow.task.qtymoyboisson',task:@task.name,count: t.qty, thing:t.drink.name)%>
+<%if t.person%>
+(<%=link_to(t.person.name, t.person)%>)
+<%end%>
+</p>
+<%end%>
+<%end%>
+<%end%>
+
+
+<%if @task.recordings.length > 0%>
+<p>
+recordings
+</p>
+<div><%=render @task.recordings%></div>
+<%end%>
+<%if @task.places.length > 0%>
+<p>
+places
+</p>
+<div><%=render @task.places%></div>
+<%end%>
+<%if @task.google_requests.length > 0%>
+<p>google requests</p>
+<div><%=render @task.google_requests%></div>
+<%end%>
+<%if @task.sailorjobs.length > 0%>
+<p><%=render partial: 'people/personlinkjob', collection: @task.sailorjobs, as: :person%></p>
+<%end%>
+
+<%if @task.githubrepos.length > 0%>
+<h5>Les repos Github de la tâche</h5>
+<section><%=render @task.githubrepos%></section>`
+<%end%>
+<%if @task.taskactions.length > 0%>
+<h5>Façons d'accomplir la tâche</h5>
+<section><%=render @task.taskactions%></section>`
+<%end%>
+<%if @task.tickets.length > 0%>
+<h5>tickets</h5>
+<section><%=render @task.tickets%></section>`
+<%end%>
+<%if @task.failingtickets.length > 0%>
+<h5>tickets pour quand la tâche est râtée</h5>
+<section><%=render @task.failingtickets%></section>`
+<%end%>
+<%if @task.attitudes.length > 0%>
+<h5>Attitudes à avoir</h5>
+<section><%=render @task.attitudes%></section>`
+<%end%>
+<% I18n.with_locale("#{I18n.locale}images") do %>
+<%=render 'images', task: @task %>
+<%end%>
+
+<%= link_to 'Edit', edit_task_path(@task) %> |
+<%= link_to 'Back', tasks_path %>

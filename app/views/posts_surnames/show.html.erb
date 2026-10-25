@@ -1,0 +1,22 @@
+<h1><%= render @posts_surname  %> </h1>
+<%=link_to "posts de ce posts' surnames", posts_posts_surname_path(@posts_surname.id)%>
+<%=render partial: "posts_surnames/mypostssurnames", collection: [@posts_surname], as: :person%>
+<%=render partial: "posts_surnames/hack", collection: [@posts_surname], as: :p%>
+<%if @posts_surname.person%><h2>La Personne de ce pseudo-avatar</h2><%= render @posts_surname.person%><%end%>
+<%if @posts_surname.surname && @posts_surname.surname.name && @posts_surname.surname.name.length > 0%><p>Pseudo donné : <%=@posts_surname.surname.name%> </p><%end%>
+
+
+        <td><%= link_to "Edit this posts surnames'" , edit_posts_surname_path(@posts_surname) %></td>
+        <%= form_with(model: @posts_surname, url: mysurnames_update_path) do |f| %>
+
+    <div class="field">
+      <%= f.hidden_field :id, value: @posts_surname.id %>
+      <%= f.check_box :remember_me %>
+      <%= f.label :remember_me %>
+    </div>
+
+  <div class="actions">
+    <%= f.submit "Log in" %>
+  </div>
+<% end %>
+

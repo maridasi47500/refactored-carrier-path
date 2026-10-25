@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+
+<p>
+  <strong>Text:</strong>
+  <%= @secretquestion.text %>
+</p>
+<ul>
+  <%@secretquestion.answers.each do |a| %>
+<li>
+<%=a.text%>
+<%if a.good%>
+oui
+<%else%>
+non
+
+<%end%>
+</li>
+<%end%>
+</ul>
+
+
+<%= link_to 'Edit', edit_secretquestion_path(@secretquestion) %> |
+<%= link_to 'Back', secretquestions_path %>

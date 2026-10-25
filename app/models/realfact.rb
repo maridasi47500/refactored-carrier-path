@@ -1,0 +1,2 @@
+class Realfact < ApplicationRecord
+end

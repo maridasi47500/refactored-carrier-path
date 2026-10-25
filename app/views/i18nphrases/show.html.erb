@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Phrase:</strong>
+  <%= @i18nphrase.content %>
+</p>
+        <%if @i18nphrase.lg%>
+<td>
+<%=image_tag "/assets/202105071417260200.gif",class:"imageprofilethread"%>(lgbt)
+</td>
+<%end%>
+<%if @i18nphrase.lsb%>
+<td>
+<%=image_tag "/assets/202105071417260200.gif",class:"imageprofilethread"%>(lesbian)
+</td>
+<%end%>
+<%if @i18nphrase.gf%>
+<td>
+<%=image_tag "/assets/202105071417260200.gif",class:"imageprofilethread"%>(girlfriend)
+</td>
+<%end%>
+
+<%if @i18nphrase.people.length > 0%>
+<p>gens liés</p>
+<%= render @i18nphrase.people%>
+<%end%>
+
+
+<%= link_to 'Edit', edit_i18nphrase_path(@i18nphrase) %> |
+<%= link_to 'Back', i18nphrases_path %>

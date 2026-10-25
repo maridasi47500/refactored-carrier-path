@@ -1,0 +1,65 @@
+require 'csv'
+require 'active_record'
+require 'fileutils'
+
+
+# Function to read data from CSV and create records in the database
+def load_data_from_csv(model, file_name)
+  CSV.foreach(file_name, headers: true) do |row|
+    model.create!(row.to_hash)
+  end
+end
+
+# Load data into the database
+load_data_from_csv(Person, 'people.csv')
+load_data_from_csv(Acquaintance, 'acquaintances.csv')
+load_data_from_csv(Relation, 'relations.csv')
+load_data_from_csv(Attitude, 'attitudes.csv')
+load_data_from_csv(Companieshaveemployee, 'companieshaveemployees.csv')
+load_data_from_csv(PeopleCity, 'people_cities.csv')
+load_data_from_csv(Personhassosie, 'personhassosies.csv')
+load_data_from_csv(Peoplehavejob, 'peoplehavejobs.csv')
+load_data_from_csv(Ecartage, 'ecartages.csv')
+load_data_from_csv(Traumberuf, 'traumberufe.csv')
+load_data_from_csv(Twoperson, 'twopeoplea.csv')
+load_data_from_csv(Twoperson, 'twopeopleb.csv')
+load_data_from_csv(Githubaccount, 'githubaccounts.csv')
+load_data_from_csv(Skillhavesailor, 'skillhavesailors.csv')
+load_data_from_csv(Linkspouseperson, 'linkspousepeople.csv')
+load_data_from_csv(Linkfamilyperson, 'linkfamilypeople.csv')
+load_data_from_csv(Sailorhaveattitudesintask, 'sailorhaveattitudesintasks.csv')
+load_data_from_csv(Artistperson, 'artistpeople.csv')
+load_data_from_csv(Attitudefilm, 'attitudefilms.csv')
+load_data_from_csv(Attitudetvseries, 'attitudetvseries.csv')
+load_data_from_csv(Answerperson, 'answerpeople.csv')
+load_data_from_csv(Redbandperson, 'redbandpeople.csv')
+load_data_from_csv(Peoplecar, 'peoplecars.csv')
+load_data_from_csv(Inlove, 'inloves.csv')
+load_data_from_csv(Lgbtperson, 'lgbtpeople.csv')
+load_data_from_csv(Rcar, 'rcars.csv')
+load_data_from_csv(Rrobot, 'rrobots.csv')
+load_data_from_csv(Peoplebeliever, 'peoplebelievers.csv')
+load_data_from_csv(Savedperson, 'savedpeople.csv')
+load_data_from_csv(Peoplelike, 'peoplelike.csv')
+load_data_from_csv(Peopledontlike, 'peopledontlike.csv')
+load_data_from_csv(Phavefilm, 'phavefilms.csv')
+load_data_from_csv(Film, 'films.csv')
+load_data_from_csv(Tvserieshaveactor, 'tvserieshaveactors.csv')
+load_data_from_csv(PostsSurname, 'my_posts_surnames.csv')
+load_data_from_csv(Profilepicsforpeople, 'profilepicsforpeople.csv')
+load_data_from_csv(Album, 'albums.csv')
+load_data_from_csv(Fact, 'facts.csv')
+load_data_from_csv(PostsSurname, 'posts_surnames.csv')
+load_data_from_csv(Place, 'places.csv')
+load_data_from_csv(Reaction, 'reactions.csv')
+load_data_from_csv(WikipediaPage, 'wikipedia_pages.csv')
+load_data_from_csv(Onetime, 'onetimes.csv')
+load_data_from_csv(Collection, 'collections.csv')
+load_data_from_csv(Sailorjob, 'sailorjobs.csv')
+load_data_from_csv(Surname, 'surnames.csv')
+load_data_from_csv(Alias, 'aliasesrecords.csv')
+load_data_from_csv(Twitteraccount, 'twitteraccounts.csv')
+load_data_from_csv(Ticketshavesender, 'ticketshavesenders.csv')
+load_data_from_csv(Ticketshaverecipient, 'ticketshaverecipients.csv')
+
+puts 'Database has been reset and seeded with new data from CSV files.'

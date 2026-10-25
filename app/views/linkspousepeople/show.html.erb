@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Person:</strong>
+  <%= link_to @linkspouseperson.person.name, @linkspouseperson.person %>
+</p>
+
+<p>
+  <strong>Otherperson:</strong>
+  <%= link_to @linkspouseperson.otherperson.name, @linkspouseperson.otherperson %>
+</p>
+
+<p>
+  <strong>Spouselink:</strong>
+  <%= @linkspouseperson.spouselink.name %>
+</p>
+  <%if @linkspouseperson.begindating && @linkspouseperson.enddating %>
+de <%=l(@linkspouseperson.begindating, format: :monthyear)%>
+a <%=l(@linkspouseperson.enddating, format: :monthyear)%>
+  <%elsif @linkspouseperson.begindating %>
+depuis <%=l(@linkspouseperson.begindating, format: :monthyear)%>
+<%end%>
+
+<%= link_to 'sex of those people', womanman_linkspouseperson_path(@linkspouseperson.id) %> |
+<%= link_to 'Edit', edit_linkspouseperson_path(@linkspouseperson) %> |
+<%= link_to 'Back', linkspousepeople_path %>

@@ -1,0 +1,31 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  largepic: MyString
+  smallpic: MyString
+  place: one
+  field: one
+  type_de_contrat: MyString
+  statut: MyString
+  salaire: MyString
+  annuel: MyString
+  temps_de_travail: MyString
+  duree_du_contrat: MyString
+  job: one
+  post: one
+  description: MyText
+
+two:
+  largepic: MyString
+  smallpic: MyString
+  place: two
+  field: two
+  type_de_contrat: MyString
+  statut: MyString
+  salaire: MyString
+  annuel: MyString
+  temps_de_travail: MyString
+  duree_du_contrat: MyString
+  job: two
+  post: two
+  description: MyText

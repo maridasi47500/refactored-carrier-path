@@ -1,0 +1,76 @@
+<%=render @person%>
+<form target="_blank" method="post" action="<%=opinion_path(params[:id])%>">
+
+<%if @person.sexe.to_s == ''%>
+
+<input id="imagegarcon" type="image" width="40" height="70" alt="garcon" title="garcon" name="garcon"
+       src="/assets/garcontoilet1.png">
+<input id="imagefille" type="image" width="40" height="70" alt="fille" title="fille" name="fille"
+       src="/assets/filletoilet1.png">
+<%else%>
+(<img  width="40" height="70" alt="<%=@person.sexe%>" title="<%=@person.sexe%>" 
+       src="/assets/<%=
+if @person.sexe == 'F'
+'fille'
+elsif @person.sexe == 'M'
+'garcon'
+end
+%>toilet1.png"/>)
+<%end%>
+<input id="image" type="image" width="40" height="70" alt="rbs" title="il est de la communauté bracelets rouges" name="rbs"
+       src="/assets/braceletrouge1.png">
+<input type="hidden" name="userid" value="<%=current_user.id%>" />
+<input type="text" name="personname" placeholder="chercher une personne" value="" onchange="seekthosepeople(this, mylist);return false;" />
+<select name="personid" id="mylist" class="invisfield"></select>
+
+
+<input id="imagelg" type="image" width="40" height="70" alt="lgbt" title="il est de la communauté lgbt" name="lgbt"
+       src="/assets/flaggaypride.gif">
+<input id="imagerob" type="image" width="40" height="70" alt="robot" title="c'est un(e) robot(e)" name="robot"
+       src="/assets/robotatlas.png">
+<input id="image" type="image" width="70" height="70" alt="car" title="c'est une voiture" name="car"
+       src="/assets/voiturerouge.png">
+<input id="imagesauve" type="image" width="40" height="70" alt="sauve" title="il est sauvé" name="saved"
+       src="/assets/lifebuoyatthesea.png">
+<input id="image" type="image" width="30" height="70" alt="dontlike" name="aimepas"
+
+       src="/assets/coeurbriserum.png">
+<input id="imageanswer" type="image" width="70" height="70" alt="answer" name="answer"
+
+       src="/assets/elenagreco11.png">
+<input id="imagenocar" type="image" width="70" height="70" alt="nocar" name="nocar"
+
+       src="/assets/velo0001.png">
+<br>
+<%=select_tag :voitureid, options_for_select(Car.all.collect {|x| [x.name, x.id]}), {prompt: 'Selectionnez sa voiture'}%>
+<%=submit_tag "selectionner"%>
+<br>
+<%@love=['un peu','beaucoup','passionnement','a la folie','pas du tout']%>
+<%(1..5).to_a.each_with_index do |h,i|%>
+<input id="image<%=h%>loveyou" type="image" width="100" height="30" title="love intensity (<%=@love[i]%>)" alt="Login" name="aime<%=h%>"
+
+       src="/assets/coeurrum.png">
+
+<%end%>
+<%=select_tag "qid", options_for_select(Question.all.collect{|x| [x.text,x.id]}), { prompt: "choisir une question", value: "", onchange: "seekanswers(this, myanswers);return false;"}%>
+<select name="ansid" id="myanswers" class=""></select>
+Chercher une personne puis cliquer sur le coeur de l'intensite de l'amour
+<br/>
+choisis une question et une reponse et clique sur elena
+</br>
+choisis un instrument de musique pratiqué et clique l'intensité de la pratique musicale
+</br>
+<%=select_tag "miid", options_for_select(Musicalinstrument.all.collect{|x| [x.name,x.id]}), { prompt: "choisir un instrument de musique", value: "",onchange:"chercherinstruments('#{@person.id}',this,instrumentsmus);return false;"}%>
+<%=select_tag "uaid", options_for_select(Ustensile.all.collect{|x| [x.name,x.id]}), { prompt: "choisir un ustensile d'artiste", value: "",onchange:"chercherustensiles('#{@person.id}',this,ustensilesart);return false;"}%>
+<%=@person.name%> joue <%=@person.musicalinstrumentspratiques.map {|x|(link_to "du "+x.name, "",onclick: "chercherinstruments('#{@person.id}',this,instrumentsmus); return false;", data:{id: x.id}).html_safe}.to_sentence.html_safe%>
+
+
+
+
+
+</form>
+</br>
+
+<div id="instrumentsmus"></div>
+<div id="ustensilesart"></div>
+

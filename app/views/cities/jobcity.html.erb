@@ -1,0 +1,19 @@
+<div>
+<%=t('display.someonelive',sailor:@person.name, city: @city.name)%>
+</div>
+<%=fields_for :epoch do |form|%>
+<div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'epochid', collec: [], mesmodele:"people",label: 'à quelle époque ?'%>
+
+</div>
+<%end%>
+
+<%=content_for :myjscode do%>
+<script>
+<%@select=[whatepoch_person_city_epochs_path(person_id: @person.id,city_id:@city.id)]%>
+<%@search =[json_epochs_path]%>
+<%@nom=['people']%>
+<%=render partial:"form/functionjsonalbum", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

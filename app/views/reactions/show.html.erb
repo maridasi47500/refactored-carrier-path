@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<%= link_to 'Create New Reaction', new_reaction_path %>
+
+<%= render @reaction %>
+<%= link_to 'Edit', edit_reaction_path(@reaction) %> |
+<%= link_to 'Back', reactions_path %>
+
+
+
+<%@collections.each_with_index do |collection,i|%>
+<%if i==0%><h2>collections de cette réaction</h2><%end%>
+    <%=render @collections%>
+<%end%>

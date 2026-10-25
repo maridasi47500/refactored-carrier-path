@@ -1,0 +1,47 @@
+<main>
+<form method="post" action="/" id="chercher" data-remote="true">
+<div>
+<select name="pseudo">
+<option value""></option>
+</select>
+</div>
+
+<div>
+  <p>photo</p>
+<select name="info">
+<option value""></option>
+<option value"photos">photos</option>
+</select>
+
+</div>
+<div>
+</div>
+<input type="submit" value="chercher"/>
+</form>
+<div id="res">
+  <%if @afficher%>
+    <%@afficher.each_with_index do |img,id|%>
+<a href="<%= facebook_photo_path(id)%>"><img src="<%= img%>"></img></a>
+  <%end%>
+  <%end%>
+
+</div>
+        <table>
+                            <tr>
+
+                <th>Date et heure</th>
+                <th>Post</th>
+                            </tr>
+                            <%MainThread.ingoodorder.each do |thread|%>
+                <tr>
+                        <td>
+                      <%= thread.planned %>
+                    </td>
+                                       <td>
+                      <%= render thread.posts %>
+                    </td>
+
+            </tr>
+            <%end%>
+    </table>
+</main>

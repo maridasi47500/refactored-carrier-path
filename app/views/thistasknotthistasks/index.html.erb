@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h1>This task, not that task</h1>
+<p>
+devine à quel tâche je pense/quel évènement/quelle tâcje j'ai dans la tête/en tête, cette tâche pas celle là
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Task</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @thistasknotthistasks.each do |thistasknotthistask| %>
+      <tr>
+        <td><%= render thistasknotthistask%></td>
+        <td><%= link_to 'Show', thistasknotthistask %></td>
+        <td><%= link_to 'Edit', edit_thistasknotthistask_path(thistasknotthistask) %></td>
+        <td><%= link_to 'Destroy', thistasknotthistask, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Thistasknotthistask', new_thistasknotthistask_path %>

@@ -1,0 +1,22 @@
+
+
+<div class="card">
+
+  <div class="card-header">
+    My attitude
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">
+<%if attitude.image%>
+<%=image_tag "/assets/"+attitude.image, class: "imageprofilethread"%>
+<%end%>
+<%if attitude.sailors.length > 0%>
+<%="Leader".pluralize(attitude.sailors.length)%> of this attitude : <%=attitude.sailors.pluck(:name).to_sentence%>
+<%end%>
+<%=attitude.name %><%=link_to "edit attitude", edit_attitude_path(attitude.id) %>
+    </h5>
+
+</p>
+  </div>
+
+</div>

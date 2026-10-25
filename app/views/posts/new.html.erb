@@ -1,0 +1,10 @@
+<h1>Write a new post
+
+</h1>
+  <%= form_with(model: @post, local: true, html: {id: "form-post", :multipart => true}) do |form| %>
+
+<%= render 'form', form: form, post: @post, currentpostid: nil %>
+
+<%end%>
+<%= link_to 'Back', posts_path %>
+

@@ -1,0 +1,5 @@
+development:
+  adapter: sqlite3
+  database: storage/development.sqlite3
+  host: localhost
+

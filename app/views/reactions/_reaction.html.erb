@@ -1,0 +1,42 @@
+<div class="card">
+<div class="card-body">
+<p class="card-text">
+    
+    <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownreaction<%=reaction.id%>" data-bs-toggle="dropdown" aria-expanded="false">
+    My reaction options
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownreaction<%=reaction.id%>">
+    <li><a class="dropdown-item" onclick="thisreaction(event);return false;" data-id="<%=reaction.id%>" href="">display reaction first in list</a></li>
+    <li><a class="dropdown-item" onclick="thisreaction2(event);return false;" data-id="<%=reaction.id%>" href="">load the people</a></li>
+  </ul>
+</div>
+</p>
+<p class="card-text">
+<%= reaction.speaker && reaction.speaker.surname && reaction.speaker.surname.name && reaction.speaker.surname.name.length > 0 ? (""+(render partial: "posts_surnames/mysailors", collection: [reaction.speaker], as: :posts_surname)+" a dit :").html_safe : "" %>
+<%=reaction.emotion ? (render reaction.emotion) : ""%>
+</p>
+<p class="card-text">
+<% reaction.name_parts.each_with_index do |person,i| %>
+  
+<%= person %>
+
+<%if reaction.reactivepeople[i] && reaction.nbpeople > 1%>
+<%= render partial: "posts_surnames/mysailors", collection: [reaction.reactivepeople[i]], as: :posts_surname, locals: {i: i} %>
+<%elsif reaction.reactivepeople[i] && reaction.nbpeople == 1%>
+<%= render partial: "posts_surnames/mysailors", collection: [reaction.reactivepeople[i]], as: :posts_surname, locals: {i: i} %>
+  <%end%>
+<%end%><%= params[:controller] != "reactions" ? (link_to "aller à la page de cette réaction", reaction ) : ""%></p>
+</div>
+</div>
+<script>
+  
+  function thisreaction(e) {
+    $.ajax({url: "<%=updatethisreaction_reactions_path%>?id="+e.target.dataset.id});
+    return false;
+  }
+  function thisreaction2(e) {
+    $.ajax({url: "<%=updatethisreaction_reactions_path%>?people=true&id="+e.target.dataset.id});
+    return false;
+  }
+</script>

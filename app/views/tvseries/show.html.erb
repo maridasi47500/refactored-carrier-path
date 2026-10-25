@@ -1,0 +1,46 @@
+<p id="notice"><%= notice %></p>
+<%@tvseries.attitudetvseries.where('note like 4 or note like 5').order('note desc').group_by {|x|x.attitude_id}.each do |y,z|%>
+<span title="<%=User.where(id: z.pluck(:user_id)).distinct.map{|x|x.name}.join(', ') %>">
+<%=z.pluck(:user_id).uniq.length%>
+<%="personne".pluralize(z.pluck(:user_id).uniq.length)%>
+</span>
+<%="pensent que".pluralize(z.pluck(:user_id).uniq.length)%>
+
+<span title="<%=Person.where(id: z.pluck(:person_id)).distinct.map{|x|x.name}.join(', ') %>">
+<%="joue le role le plus ".pluralize(z.pluck(:person_id).uniq) %>
+<%=Attitude.find(y).name%>
+(dans <%Tvseries.where(id: z.pluck(:tvseries_id)).distinct.each do |a|%>
+<span><%=a.name%></span>
+<%end%>)
+
+.
+<%end%>
+
+<%=render @tvseries%>
+<p>
+  <strong>Description:</strong>
+  <%= @tvseries.description %>
+</p>
+<% if @tvseries.actors.length > 0 %>
+<table>
+  <thead>
+    <tr>
+      <th>Actors</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tvseries.tvserieshaveactors.each do |a| %>
+      <tr>
+        <td><%= link_to a.actor do %><%=render partial: "people/personsimple", collection: [a.actor], as: :person%><%end%> <%if a.surname && a.surname.name.to_s.length > 0%>(<%=a.surname.name%>)<%end%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>
+<br>
+<%if @tvseries.actors.length > 0%>
+<%= link_to 'Edit roles', editroles_tvseries_path(@tvseries.id) %> |
+<%end%>
+<%= link_to 'Edit', edit_tvseries_path(@tvseries) %> |
+<%= link_to 'Back', tvseries_index_path %>

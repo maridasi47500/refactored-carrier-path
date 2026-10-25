@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>All the gossips about someone</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Content</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @aboutsomeonegossips.each do |aboutsomeonegossip| %>
+      <tr>
+        <td><%= aboutsomeonegossip.content %></td>
+        <td><%= link_to 'Show', aboutsomeonegossip %></td>
+        <td><%= link_to 'Edit', edit_aboutsomeonegossip_path(aboutsomeonegossip) %></td>
+        <td><%= button_to 'Destroy', aboutsomeonegossip, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New gossip by a professional reporter', new_aboutsomeonegossip_path %>

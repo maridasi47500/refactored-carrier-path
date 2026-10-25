@@ -1,0 +1,9 @@
+<%=link_to person do %>
+<div class="<%if person.rrobots.count > 0 && person.redbandpeople.count > 0%>rbsperson<%elsif person.redbandpeople.length > 0%>redband<%end%> <%if person.bi%>bisex<%elsif person.hetero%>heterosex<%elsif person.homo%>homosex<%end%>">
+<%if person.has_currently_lover?%>
+<%=image_tag "/assets/velolover.png", class: "imageprofilethread",title: "has current got a lover" %>
+<%end%>
+<%=  person.name%>
+<%= image_tag(person.image, class: "imageprofilethread", alt:"profile pic")%>
+</div>
+<%end%>

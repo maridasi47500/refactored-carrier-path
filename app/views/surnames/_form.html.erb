@@ -1,0 +1,33 @@
+<%= form_with(model: surname, local: true) do |form| %>
+  <% if surname.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(surname.errors.count, "error") %> prohibited this surname from being saved:</h2>
+
+      <ul>
+        <% surname.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+<%=render "form/checkbox", form: form, fieldname: 'person_ids', collec: surname.people, mesmodele:"people"%>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+<%@select=[people_surnames_path]%>
+<%@search=[personjson_albums_path]%>
+<%@nom=['people']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

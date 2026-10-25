@@ -1,0 +1,41 @@
+<%= form_with(model: i18nphrase, local: true) do |form| %>
+  <% if i18nphrase.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(i18nphrase.errors.count, "error") %> prohibited this i18nphrase from being saved:</h2>
+
+      <ul>
+        <% i18nphrase.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <% I18nphrase.locale_columns(:content).each do |column| %>
+
+  <div class="field">
+    <%= form.label column %>
+    <%= form.text_area column %>
+  </div>
+<%end%>
+  <div class="field">
+<%=render "form/checkbox", form: form, fieldname: 'person_ids', collec: Person.findbyid(i18nphrase.person_ids), mesmodele:"people"%>
+
+</div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<%=content_for :myjscode do%>
+<script>
+<%@select=[people_i18nphrases_path]%>
+<%@search=[personjson_albums_path]%>
+<%@nom=['people']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

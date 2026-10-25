@@ -1,0 +1,10 @@
+<%=fields_for modelname do |form|%>
+<%=form.collection_radio_buttons(fieldname, collec, :id, :name) do |b| %>
+       <%=b.radio_button%>
+<%=b.label do%>
+<%=render classname.find(b.value)%>
+<%end%>
+
+<% end %>
+<% end %>
+

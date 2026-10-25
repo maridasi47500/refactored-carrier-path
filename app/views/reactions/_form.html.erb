@@ -1,0 +1,258 @@
+<%= form_with(model: reaction, local: true) do |form| %>
+  <% if reaction.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(reaction.errors.count, "error") %> prohibited this reaction from being saved:</h2>
+
+      <ul>
+        <% reaction.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= form.label :emotion_id,"your emotion" %>
+    <%= form.collection_select(:emotion_id, Emotion.all, :id, :name, prompt: true) %>
+  </div>
+    <%#if reaction.name %>
+    <%#= form.label :name, "Choose your reaction" %>
+    <%#=form.select("name", Reaction.ofallkind, { selected:@myreaction, include_blank: true })%>
+    <%#else%>
+      <%= form.label :reaction_id, "Choose your reaction" %>
+      <%=form.select("reaction_id", ReactionsText.all.pluck(:name,:id), { selected: @myreaction, include_blank: true })%>
+    <%#end%>
+      Delete: <%= form.check_box :_destroy %>
+          The order is reversed: <%= form.check_box :opposite %>
+        <%reaction.reactivepeople.each_with_index do |reactiveperson,ind| %>
+        <%= form.fields_for :reactivepeople,reactiveperson do |f| %>
+                          <div class="field">
+
+
+                    </div>
+
+  <% PostsSurname.locale_columns(:content).each do |column| %>
+  <div class="field">
+    <%= f.label column %>
+    <%= f.text_area column, class: 'contentpost' %>
+
+</div>
+
+  <% end %>
+
+
+
+
+    <%= f.fields_for :surname do |surname| %>
+      <div>
+        <%= surname.label :name %>
+        <%= surname.text_field :name %>
+      </div>
+      <div>
+        <%= surname.label :image %>
+        <%= surname.file_field :image %>
+      </div>
+    <%end%>
+
+          <div>
+        <%= f.label :action_name, "name action this person is doing" %>
+        <%= f.text_field :action_name %>
+          </div>
+                                          <%=f.fields_for :thing do |stuff|%>
+                                    <div>
+        <%= stuff.label :name, "name for this stuff" %>
+        <%= stuff.text_field :name %>
+      </div>
+      <div>
+        <%= stuff.label :image, "load a pic for this stuff" %>
+        <%= stuff.file_field :image %>
+      </div>
+                  
+                        <%end%>
+
+    <%#= f.label :place_id, "link to a place" %>
+    <%# f.text_field :place_id, class:'placeid'%>
+                <div class="placessurnamesattributes">
+                                <button  type="button" onclick="$.ajax({type:'POST',url:window.location.pathname+'.js?addaplacetosurnameattribute=true'});">add a place</button>
+    <%= f.fields_for :place do |surname| %>
+      <div>
+        <%= surname.label :name, "place from where you post a message" %>
+        <%= surname.text_field :name %>
+      </div>
+      <div>
+        <%= surname.label :image, "image for this place" %>
+        <%= surname.file_field :image %>
+        <%= surname.hidden_field :longitude %>
+        <%= surname.hidden_field :latitude %>
+      </div>
+          <div>
+
+                  <%= surname.label :_destroy, "remove this place" %>
+
+          <%= surname.check_box :_destroy %>
+      </div>
+    <%end%>
+
+                </div>
+                                <div class="field">
+<%= f.label :place_id, "Sailors' places" %>
+    <%= f.select("place_id", Place.all.collect {|p| [ p.name, p.id ] },{prompt: 'edit the place'}, { size: 5,multiple: false,allow_blank:true}) %>
+                </div>
+
+                <div class="field">
+
+
+      </div>
+<%= f.fields_for :profilepic do |g| %>
+<div class="field">
+<%=g.label :name, "Add a profile pic for him/her"%>
+  <%=g.file_field("name")%>
+</div>    
+<div class="field">
+<%=g.label :nameimage, "What's on the pic?"%>
+  <%=g.text_field("nameimage")%>
+</div>    
+
+<%end%>
+  <div>
+    <%=f.label :person_id, "name of this sailor"%>
+    <%= f.collection_radio_buttons(:person_id, reaction.afficherceuxla, :id, :name) do |b| %>
+      <%= b.label %> <%= b.radio_button %>
+    <% end %>
+  </div>
+
+
+
+    Delete or cancel surname for this sailor: <%= f.check_box :_destroy %>
+      <div>
+<%@i||=0%>
+<%@i+=1%>
+        <%= text_field_tag "cherchonsici", "",onchange:"chercherici(this,chercheici#{@i});return false;", id: "cherchaici#{@i}",class:"mysearchfieldavatars" %>
+
+      </div>
+        <select onchange="selectpeople(this,avat<%=@i%>,<%=ind%>);return false;" id="chercheici<%=@i%>" data-field="person_id"></select>
+<div id="avat<%=@i%>"></div>
+<% end %>
+        <%= form.fields_for :speaker do |f| %>
+          <h4>Who's saying this?</h4>
+
+  <% PostsSurname.locale_columns(:content).each do |column| %>
+  <div class="field">
+    <%= f.label column %>
+    <%= f.text_area column, class: 'contentpost' %>
+
+</div>
+
+  <% end %>
+
+    <%= f.fields_for :surname do |surname| %>
+      <div>
+        <%= surname.label :name %>
+        <%= surname.text_field :name %>
+      </div>
+      <div>
+        <%= surname.label :image %>
+        <%= surname.file_field :image %>
+      </div>
+    <%end%>
+
+          <div>
+        <%= f.label :action_name, "name action this person is doing" %>
+        <%= f.text_field :action_name %>
+          </div>
+                                          <%=f.fields_for :thing do |stuff|%>
+                                    <div>
+        <%= stuff.label :name, "name for this stuff" %>
+        <%= stuff.text_field :name %>
+      </div>
+      <div>
+        <%= stuff.label :image, "load a pic for this stuff" %>
+        <%= stuff.file_field :image %>
+      </div>
+                  
+                        <%end%>
+
+    <%#= f.label :place_id, "link to a place" %>
+    <%# f.text_field :place_id, class:'placeid'%>
+                <div class="placessurnamesattributes">
+                                <button  type="button" onclick="$.ajax({type:'POST',url:window.location.pathname+'.js?addaplacetosurnameattribute=true'});">add a place</button>
+    <%= f.fields_for :place do |surname| %>
+      <div>
+        <%= surname.label :name, "place from where you post a message" %>
+        <%= surname.text_field :name %>
+      </div>
+      <div>
+        <%= surname.label :image, "image for this place" %>
+        <%= surname.file_field :image %>
+        <%= surname.hidden_field :longitude %>
+        <%= surname.hidden_field :latitude %>
+      </div>
+          <div>
+
+                  <%= surname.label :_destroy, "remove this place" %>
+
+          <%= surname.check_box :_destroy %>
+      </div>
+    <%end%>
+
+                </div>
+                                <div class="field">
+<%= f.label :place_id, "Sailors' places" %>
+    <%= f.select("place_id", Place.all.collect {|p| [ p.name, p.id ] },{prompt: 'edit the place'}, { size: 5,multiple: false,allow_blank:true}) %>
+                </div>
+
+                <div class="field">
+
+
+      </div>
+<%= f.fields_for :profilepic do |g| %>
+<div class="field">
+<%=g.label :name, "Add a profile pic for him/her"%>
+  <%=g.file_field("name")%>
+</div>    
+<div class="field">
+<%=g.label :nameimage, "What's on the pic?"%>
+  <%=g.text_field("nameimage")%>
+</div>    
+
+<%end%>
+  <div>
+    <%=f.label :person_id, "name of this sailor"%>
+    <%= f.collection_radio_buttons(:person_id, reaction.afficherceuxlaaussi, :id, :name) do |b| %>
+      <%= b.label %> <%= b.radio_button %>
+    <% end %>
+  </div>
+
+
+
+    Delete or cancel surname for this sailor: <%= f.check_box :_destroy %>
+<hr></hr>
+<% end %>
+<% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+function chercherici(field,selectfield){
+$.ajax({url: '<%=personjson_albums_path%>?name='+field.value, 
+success:function(data){
+selectfield.innerHTML="<option></option>";
+var value, id;
+for (var i=0;i<data.length;i++){
+id=data[i].id;
+name=data[i].name;
+selectfield.innerHTML+="<option value='"+id+"'>"+name+"</option>";
+}
+}});
+};
+function selectpeople(field,box,i){
+$.ajax({url: '<%=mypeople_reactions_path%>?field='+field.dataset.field+'&id='+field.value+'&n='+String(i), 
+success:function(data){
+box.innerHTML+=data;
+
+}});
+};
+</script>
+<% end %>

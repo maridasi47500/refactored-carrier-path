@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+<%=render @attitude%>
+<br>
+<%if @attitude.amateurs.length > 0%>
+<%="Amateur".pluralize(@attitude.amateurs.length)%> of this attitude : <%=@attitude.amateurs.pluck(:name).to_sentence%>
+<br>
+<%end%>
+
+

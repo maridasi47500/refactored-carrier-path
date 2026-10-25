@@ -1,0 +1,91 @@
+<%= form_with(model: currentjoboffer) do |form| %>
+  <% if currentjoboffer.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(currentjoboffer.errors.count, "error") %> prohibited this currentjoboffer from being saved:</h2>
+
+      <ul>
+        <% currentjoboffer.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :largepic, style: "display: block" %>
+    <%= form.text_field :largepic %>
+  </div>
+
+  <div>
+    <%= form.label :smallpic, style: "display: block" %>
+    <%= form.text_field :smallpic %>
+  </div>
+
+  <div>
+<%=render "form/radiobutton", form: form, fieldname: 'place_id', collec: currentjoboffer.myplace, mesmodele:"places"%>
+    
+  </div>
+
+  <div>
+<%=render "form/radiobutton", form: form, fieldname: 'field_id', collec: currentjoboffer.myfield, mesmodele:"fields"%>
+  </div>
+
+  <div>
+    <%= form.label :type_de_contrat, style: "display: block" %>
+    <%= form.text_field :type_de_contrat %>
+  </div>
+
+  <div>
+    <%= form.label :statut, style: "display: block" %>
+    <%= form.text_field :statut %>
+  </div>
+
+  <div>
+    <%= form.label :salaire, style: "display: block" %>
+    <%= form.text_field :salaire %>
+  </div>
+
+  <div>
+    <%= form.label :annuel, style: "display: block" %>
+    <%= form.text_field :annuel %>
+  </div>
+
+  <div>
+    <%= form.label :temps_de_travail, style: "display: block" %>
+    <%= form.text_field :temps_de_travail %>
+  </div>
+
+  <div>
+    <%= form.label :duree_du_contrat, style: "display: block" %>
+    <%= form.text_field :duree_du_contrat %>
+  </div>
+
+  <div>
+<%=render "form/radiobutton", form: form, fieldname: 'job_id', collec: currentjoboffer.myjob, mesmodele:"jobs"%>
+  </div>
+  <div>
+<%=render "form/radiobutton", form: form, fieldname: 'person_id', collec: Person.where(person_id: currentjoboffer.person_id), mesmodele:"people"%>
+  </div>
+
+  <div>
+    <%= form.hidden_field :post_id, value: params[:postid] %>
+  </div>
+
+  <div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.textarea :description %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+<%=content_for :myjscode do%>
+<script>
+<%@select=[field_currentjoboffers_path, place_currentjoboffers_path, job_currentjoboffers_path, person_currentjoboffers_path]%>
+<%@search=[json_fields_path,json_places_path, json_jobs_path, json_people_path]%>
+<%@nom=['fields','places','jobs', 'people']%>
+<%=render partial:"form/functionjson", collection: @nom.zip(@search, @select), as: :t%>
+</script>
+<%end%>
+

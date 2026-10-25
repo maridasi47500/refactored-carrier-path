@@ -1,0 +1,80 @@
+<%=content_for :mylittlecss do%>
+.entrecesdeuximg {
+width: 200px;
+height:200px;
+display:block;
+float:left;
+text-align:center;
+margin:0 auto;
+}
+.entrecesdeux {
+display:inline-block;
+width:100%;
+clear:both;
+}
+.entrecesdeuximg1 {
+width:70px;
+}
+.entrecesdeuximg1 {
+width:70px;
+}
+.entrecesdeuximg1 > span {
+
+
+vertical-align:middle;
+margin: 0 auto;
+position: relative;
+float: left;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+
+}
+<%end%>
+
+
+
+<p id="notice"><%= notice %></p>
+<%if @betterperson.attitude.sailors.length > 0%>
+<%=t('entrecesdeuxpersonattitudesleader', attitude: @betterperson.attitude.name,leaders: @betterperson.attitude.sailors.pluck(:name).to_sentence)%>
+<%else%>
+<%=t('entrecesdeuxpersonattitudes', attitude: @betterperson.attitude.name)%>
+<%end%>
+<form class="entrecesdeux">
+  <input id="im1" type="image" class="entrecesdeuximg" src="<%=@betterperson.twoperson.person.image %>" name="person" title="<%=@betterperson.twoperson.person.name%>">
+<div class="entrecesdeuximg entrecesdeuximg1">
+<span>ou</span>
+</div>
+  <input id="im2" type="image" class="entrecesdeuximg" src="<%=@betterperson.twoperson.otherperson.image %>" name="otherperson" title="<%=@betterperson.twoperson.otherperson.name%>">
+<div class="entrecesdeuximg entrecesdeuximg1">
+<span>?</span>
+</div>
+<input type="hidden" name="userid" value="<%=current_user.id%>">
+</form>
+
+
+<p>
+  Proposé par <%= @betterperson.user.name %>
+</p>
+<%if @betterperson.findthemost.length > 0%>
+<ul>
+<%@betterperson.findthemost.each do |t|%>
+<li><%=t.user.name%> a repondu 
+<%case t.themost%>
+<%when 1%>
+<%=render @betterperson.twoperson.person%>
+<%when 2%>
+<%=render @betterperson.twoperson.otherperson%>
+<%end%>
+<%if t.user.id = current_user.id%>
+<form>
+  <input id="cancelvote1" type="image" class="calcelvote" src="/assets/cancelmyvote.png" name="cancel" title="cancel my vote for this question">
+</form>
+<%end%>
+</li>
+
+<%end%>
+</ul>
+<%end%>
+<%= link_to 'Edit', edit_betterperson_path(@betterperson) %> |
+<%= link_to 'Back', betterpeople_path %>

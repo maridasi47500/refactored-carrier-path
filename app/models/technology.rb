@@ -1,0 +1,2 @@
+class Technology < Thing
+end

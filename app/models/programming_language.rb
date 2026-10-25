@@ -1,0 +1,3 @@
+class ProgrammingLanguage < Thing
+  
+end
