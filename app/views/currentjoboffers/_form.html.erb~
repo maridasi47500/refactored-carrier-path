@@ -68,9 +68,6 @@
 <%=render "form/radiobutton", form: form, fieldname: 'person_id', collec: Person.where(id: currentjoboffer.person_id), mesmodele:"people"%>
   </div>
 
-  <div>
-    <%= form.hidden_field :post_id %>
-  </div>
 
   <div>
     <%= form.label :description, style: "display: block" %>

@@ -602,30 +602,6 @@ end
    f=read_attribute(:facebook)
     f && f.length > 0 ? f : nil
  end
-def image=(file)
-  if !file.is_a?(String)
-      pathfile = file.tempfile.path
-      p pathfile
-      name =file.original_filename
-      ext = name.include?('.') ? name.split('.').last : ''
-      filename = DateTime.now.to_s.gsub(/[^0-9]/, '')+'.'+ext
-      self.write_attribute(:image,filename)
-      loc='photos'
-      abs="/app/assets/images/#{filename}"
-      p abs
-      #Post.cloud([loc,filename].join('/'),abs)
-      `mv #{pathfile} #{Rails.root.to_s+abs}`
-  else
-filename=file
-          self.write_attribute(:image,file)
-
-  end
-#  if file
-#    ppic = Profilepicture.find_or_create_by(title: self.name, image: self.read_attribute(:image))
-#    self.permanentprofilepictures << ppic
-#end
-
-end
 def month=(m)
   write_attribute(:month_met, m)
 end

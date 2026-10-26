@@ -587,17 +587,17 @@ end
    end
    
  end
- def image
-
-  image2=(self.profilepics.length > 0 ? (self.myprofilepic ? self.myprofilepic.image : nil) : nil ) rescue nil
-  image2||=self.read_attribute(:image)
-  if image2.to_s.include?('http')
-    
-  image2 || "imagedelutilisateurinconnu.png"
-  else
-  "/assets/#{image2}" || "imagedelutilisateurinconnu.png"
-  end
-end
+# def image
+#
+#  image2=(self.profilepics.length > 0 ? (self.myprofilepic ? self.myprofilepic.image : nil) : nil ) rescue nil
+#  image2||=self.read_attribute(:image)
+#  if image2.to_s.include?('http')
+#    
+#  image2 || "imagedelutilisateurinconnu.png"
+#  else
+#  "/assets/#{image2}" || "imagedelutilisateurinconnu.png"
+#  end
+#end
  def facebook
    f=read_attribute(:facebook)
     f && f.length > 0 ? f : nil
