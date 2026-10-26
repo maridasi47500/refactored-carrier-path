@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_10_25_164511) do
+ActiveRecord::Schema[8.1].define(version: 2026_10_26_015921) do
   create_table "Argent", force: :cascade do |t|
     t.integer "user_id"
     t.string "mois", limit: 15, null: false
@@ -2604,6 +2604,15 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_25_164511) do
     t.integer "epoch_id"
   end
 
+  create_table "taskhaveplaces", force: :cascade do |t|
+    t.integer "task_id", null: false
+    t.integer "place_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["place_id"], name: "index_taskhaveplaces_on_place_id"
+    t.index ["task_id"], name: "index_taskhaveplaces_on_task_id"
+  end
+
   create_table "taskhavetaskactiontwosailorjobs", force: :cascade do |t|
     t.integer "taskactiontwosailorjob_id"
     t.integer "person_id"
@@ -3064,4 +3073,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_25_164511) do
   add_foreign_key "currentjoboffers", "places"
   add_foreign_key "posthasjobpositions", "currentjoboffers"
   add_foreign_key "posthasjobpositions", "posts"
+  add_foreign_key "taskhaveplaces", "places"
+  add_foreign_key "taskhaveplaces", "tasks"
 end

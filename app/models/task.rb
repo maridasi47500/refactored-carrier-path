@@ -133,6 +133,7 @@ has_many :mytvseries, class_name: 'Tvseries', through: :sailors, source: :tvseri
   has_and_belongs_to_many :itineraries, class_name: "Place"
   accepts_nested_attributes_for :itineraries, allow_destroy: true
 
+  has_and_belongs_to_many :google_requests
   has_and_belongs_to_many :googlesearches, class_name: "GoogleRequest"
   accepts_nested_attributes_for :googlesearches, allow_destroy: true
 
@@ -174,6 +175,7 @@ end
     places=self.latitude && self.longitude && self.latitude.length > 0 && self.longitude.length > 0 ? [self]+Place.near([self.latitude.to_f, self.longitude.to_f], 100) : []
     places.pluck(:name, :latitude,:longitude)
   end
+  has_and_belongs_to_many :places, :join_table => :taskhaveplaces
 
 def newsuccessticket
     ticket=Ticket.new(successfultasks: [self])
